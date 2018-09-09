@@ -1,0 +1,12 @@
+<div>
+  <h3 class="text-center">Contact</h3>
+  <hr>
+  <div class="text-center">
+    <div class="inputs row" ng-repeat="contact in contactInfo">
+      <h4 class="col-md-3" ng-bind="contact.label"></h4>
+      <span class="col-md-9">
+      <input class="form-control" ng-model="contact.input" type="text" placeholder="{{contact.label}}">
+    </span>
+    </div>
+    <div class="btn btn-primary pull-right" ng-click="sendMessage()">Send</div>
+  </div>

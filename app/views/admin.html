@@ -1,0 +1,77 @@
+<style>
+.poleClass {
+  margin: 5px;
+}
+
+</style>
+<div>
+  <h3 class="text-center">Admin</h3>
+  <hr>
+  <div class="col-md-5">
+    <h3 class="text-center">Upload Image</h3>
+    <hr>
+    <span class="pull-right">*must be correct</span>
+    <div class="inputs">Image Name:
+      <input class="form-control" type="text" placeholder="Image Name">
+    </div>
+    <div class="inputs">Description:
+      <input class="form-control" type="text" placeholder="Image Description">
+    </div>
+    <div class="btn btn-primary pull-right" style="margin-top: 5px;">Upload</div>
+  </div>
+  <div class="col-md-7">
+    <hr>
+    <div>
+      <h3 class="text-center">Remove People</h3>
+      <hr>
+      <div class="text-center">
+        <div class="btn btn-default poleClass" ng-repeat="class in myClasses" ng-click="selectClass(class)">
+          <h4 class="text-center" ng-bind="class.name">
+      <h6 class="text-center" ng-bind="class.time | date:'short'"></h6>
+      <h6 class="text-center" ng-bind="class.type"></h6>
+      <h6 class="text-center glyphicon glyphicon-star" ng-class="['success', {'success': class.difficulty<3},'danger', {'danger': class.difficulty<5&&class.difficulty>2}]" ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
+      <!-- <h6 class="text-center glyphicon glyphicon-star-empty" ng-class="['glyphicon-star', {'glyphicon-star': class.di!=1}]"  ng-repeat="i in getNumber(class.difficulty) track by $index"></h6> -->
+    </h4>
+        </div>
+      </div>
+      <div>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Attendance</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in classInfo" ng-if="info.class_id==selectedClass.id">
+              <td ng-bind="info.poler_name"></td>
+              <td ng-bind="info.points"></td>
+              <td ng-click="removePoler(info)">X</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div>
+    <h3 class="text-center">Points System</h3>
+    <hr>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="poler in polers">
+          <td ng-bind="poler.name"></td>
+          <td ng-bind="poler.class"></td>
+          <td ng-bind="poler.points"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

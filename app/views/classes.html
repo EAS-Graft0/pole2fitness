@@ -1,0 +1,83 @@
+<style>
+.success {
+  color: green;
+}
+
+.danger {
+  color: red;
+}
+
+.poleClass {
+  margin: 5px;
+}
+
+</style>
+<div>
+  <h3 class="text-center">Classes</h3>
+  <hr>
+  <div class="text-center">
+    <b>
+      *Classes will only be run providing there are a minimum of 5 people booked on to that class.*
+    </b>
+    <p>
+      £30 for a block of 5 weeks.
+    </p>
+  </div>
+  <div class="text-center">
+    <div class="btn btn-default poleClass" ng-repeat="class in myClasses" ng-click="selectClass(class)">
+      {{class.day}}
+      <h4 class="text-center" ng-bind="class.name">
+			<h6 class="text-center" ng-bind="class.date | date:'short'"></h6>
+			<h6 class="text-center" ng-bind="class.type"></h6>
+      <span>Difficulty: </span>
+			<h6 class="text-center glyphicon glyphicon-star" ng-class="['success', {'success': class.difficulty<3},'danger', {'danger': class.difficulty<5&&class.difficulty>2}]" ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
+			<!-- <h6 class="text-center glyphicon glyphicon-star-empty" ng-class="['glyphicon-star', {'glyphicon-star': class.di!=1}]"  ng-repeat="i in getNumber(class.difficulty) track by $index"></h6> -->
+		</h4>
+    </div>
+  </div>
+  <div>
+    <p class="description" ng-bind="selectedClass.description"></p>
+    <br>
+    <h4> {{selectedClass.day}} {{selectedClass.name}} - Attendees</h4>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Attendance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="info in classInfo" ng-if="info.class_id==selectedClass.id">
+          <td ng-bind="info.name"></td>
+          <td ng-bind="info.points"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <div>
+    <h3 class="text-center">Book a class</h3>
+    <hr>
+    <div ng-model="bookee">
+      <div class="inputs">Name:
+        <input class="form-control" ng-model="bookee.name" type="text" placeholder="Name">
+      </div>
+      <div class="inputs">Email:
+        <input class="form-control" ng-model="bookee.email" type="text" placeholder="Email">
+      </div>
+    </div>
+    <div class="text-center">
+      <div class="btn poleClass" ng-class="['btn-primary', {'btn-primary': class.id!=1}]" ng-repeat="class in myClasses" ng-click="bookClass(class, bookee)">
+        <h4 class="text-center">Book</h4>
+        <h4 class="text-center" ng-bind="class.name"></h4>
+        <h6 class="text-center" ng-bind="class.time | date:'short'"></h6>
+        <h6 class="text-center" ng-bind="class.type"></h6>
+      </div>
+    </div>
+    <!-- <div class="btn btn-primary">Pay Online</div> -->
+  </div>
+</div>
+<!-- private lessons -->
+<!-- pay online -->
+<!-- donate -->
+<!-- buy things -->
