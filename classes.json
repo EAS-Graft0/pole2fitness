@@ -1,0 +1,25 @@
+[{
+    "id": 1,
+    "name": "Inverts & Tricks",
+    "day": "Monday",
+    "description": "This class is going to be inverst and tricks and will be fairly difficult for a beginner, but if you are confident enough then feel free to book.",
+    "difficulty": 3
+}, {
+    "id": 2,
+    "name": "Beginners",
+    "day": "Monday",
+    "description": "This class is for beginners and will focus aorund easier moves and key principles and techniques.",
+    "difficulty": 1
+}, {
+    "id": 3,
+    "name": "Beginners",
+    "day": "Tuesday",
+    "description": "This class is for beginners and will focus aorund easier moves and key principles and techniques.",
+    "difficulty": 1
+}, {
+    "id": 4,
+    "name": "Mixed Ability",
+    "day": "Thursday",
+    "description": "This class is for people of all abilities whether you are new or experienced.",
+    "difficulty": 2
+}]
