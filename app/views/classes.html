@@ -28,7 +28,7 @@
       {{class.day}}
       <h4 class="text-center" ng-bind="class.name">
 			<h6 class="text-center" ng-bind="class.date | date:'short'"></h6>
-			<h6 class="text-center" ng-bind="class.type"></h6>
+			<!-- <h6 class="text-center" ng-bind="class.type"></h6> -->
       <span>Difficulty: </span>
 			<h6 class="text-center glyphicon glyphicon-star" ng-class="['success', {'success': class.difficulty<3},'danger', {'danger': class.difficulty<5&&class.difficulty>2}]" ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
 			<!-- <h6 class="text-center glyphicon glyphicon-star-empty" ng-class="['glyphicon-star', {'glyphicon-star': class.di!=1}]"  ng-repeat="i in getNumber(class.difficulty) track by $index"></h6> -->
@@ -36,6 +36,7 @@
     </div>
   </div>
   <div>
+    <div ng-repeat="lesson in classSchedule">{{lesson.name}} {{lesson.date | date:'medium'}}</div>
     <p class="description" ng-bind="selectedClass.description"></p>
     <br>
     <h4> {{selectedClass.day}} {{selectedClass.name}} - Attendees</h4>
@@ -43,13 +44,13 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Attendance</th>
+          <!-- <th>Attendance</th> -->
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="info in classInfo" ng-if="info.class_id==selectedClass.id">
           <td ng-bind="info.name"></td>
-          <td ng-bind="info.points"></td>
+          <!-- <td ng-bind="info.points"></td> -->
         </tr>
       </tbody>
     </table>

@@ -40,11 +40,39 @@ app.get("/getClasses", function(req, res) {
     })
 })
 
+app.get("/getClassSchedule", function(req, res) {
+    var getClasses = dbHelper.getData("SELECT name, day, date FROM classes JOIN schedule ON schedule.class_id = classes.id WHERE class_id = " + req.query.class_id)
+    getClasses.then(function(classes) {
+        res.send(classes)
+    })
+})
+
 
 app.get("/getClassInfo", function(req, res) {
-    var getClassInfo = dbHelper.getData("SELECT * FROM bookings")
+    var getClassInfo = dbHelper.getData("SELECT DISTINCT(email), name, class_id FROM bookings")
     getClassInfo.then(function(classInfo) {
         res.send(classInfo)
+    })
+})
+
+app.post("/startNewblock", (req, res) => {
+    dbHelper.getData("DELETE FROM schedule WHERE id > 0").then((result) => {
+        for (let i in req.body) {
+            for (let j in req.body[i]) {
+                dbHelper.getData("INSERT INTO schedule (class_id, date) VALUES (" + i.split('class')[1] + ", '" + req.body[i][j].substring(0, 19) + "')")
+            }
+        }
+        res.send('New Block Started!')
+    })
+})
+
+app.post("/book", (req, res) => {
+    dbHelper.getData("SELECT * FROM schedule WHERE class_id = " + req.body.class_id).then((result) => {
+        for (let i in result) {
+            dbHelper.getData("INSERT INTO bookings (class_id, schedule_id, name, email) VALUES (" + req.body.class_id + "," + result[i].id + ", '" + req.body.name + "', '" + req.body.email + "')").then((result) => {
+                res.send(result)
+            })
+        }
     })
 })
 
@@ -60,97 +88,97 @@ app.get("/getClassInfo", function(req, res) {
 // })
 
 
-app.get("/getMondayInverts", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Monday 6:00-7:00 Inverts and Tricks'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getSubscriptions", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getMondayBeginners", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Monday 7:05-8:05 Beginners'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getTuesdayMixed", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Tuesday 6:30-7:30 Mixed Ability'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getTuesdayStrengthen", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Tuesday 7:30-8:15 Pole Strengthen'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getWednesdayNewBeginners", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Wednesday 6:00-7:00 New Beginners'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getWednesdayBeginners", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Wednesday 7:00-8:00 Beginners'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getThursdayMixed", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Thursday 6:30-7:30 Mixed Ability'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
-app.get("/getFridayBeginners", function(req, res, next) {
-    connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Friday 6:00-7:00 Beginners'", function(err, rows, fields) {
-        if (!err) {
-            res.json(rows)
-        } else {
-            console.log(err)
-        }
-    })
-});
+// app.get("/getMondayInverts", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Monday 6:00-7:00 Inverts and Tricks'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getSubscriptions", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getMondayBeginners", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Monday 7:05-8:05 Beginners'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getTuesdayMixed", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Tuesday 6:30-7:30 Mixed Ability'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getTuesdayStrengthen", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Tuesday 7:30-8:15 Pole Strengthen'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getWednesdayNewBeginners", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Wednesday 6:00-7:00 New Beginners'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getWednesdayBeginners", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Wednesday 7:00-8:00 Beginners'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getThursdayMixed", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Thursday 6:30-7:30 Mixed Ability'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
+// app.get("/getFridayBeginners", function(req, res, next) {
+//     connection.query("SELECT DISTINCT name,class,email from subscriptions where class = 'Friday 6:00-7:00 Beginners'", function(err, rows, fields) {
+//         if (!err) {
+//             res.json(rows)
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
 
-app.post("/subscribe", function(req, res, next) {
-    connection.query('INSERT INTO subscriptions SET ?', req.body.values, function(err) {
-        if (!err) {
-            res.send('{"status":"success"}')
-        } else {
-            console.log(err)
-        }
-    })
-});
+// app.post("/subscribe", function(req, res, next) {
+//     connection.query('INSERT INTO subscriptions SET ?', req.body.values, function(err) {
+//         if (!err) {
+//             res.send('{"status":"success"}')
+//         } else {
+//             console.log(err)
+//         }
+//     })
+// });
 
 app.post('/sendConfirmation', function(req, res, next) {
     var transporter = nodemailer.createTransport("SMTP", {

@@ -23,12 +23,27 @@ angular.module('pole2fitnessApp')
         $scope.selectClass = function(clickedClass) {
             $scope.selectedClass = clickedClass
             console.log($scope.selectedClass)
+
+            $scope.getClassSchedule(clickedClass.id);
         }
         $scope.getNumber = function(num) {
             return new Array(num);
         }
 
-        $scope.bookClass = function(classToBook, bookee) {
-            console.log(classToBook, bookee)
+        $scope.bookClass = function(classToBook, participant) {
+            let data = {
+                class_id: classToBook.id,
+                name: participant.name,
+                email: participant.email
+            }
+            $http.post("http://localhost:88/book", data).then((result) => {
+                console.log(result)
+            })
+        }
+
+        $scope.getClassSchedule = (class_id) => {
+            $http.get("http://localhost:88/getClassSchedule?class_id=" + class_id).then((result) => {
+                $scope.classSchedule = result.data;
+            })
         }
     });
