@@ -11,7 +11,7 @@
   <div class="btn btn-default" ng-click="startNewBlock(date)">
     Start New Block
   </div>
-  <div class="col-md-5">
+  <!--   <div class="col-md-5">
     <h3 class="text-center">Upload Image</h3>
     <hr>
     <span class="pull-right">*must be correct</span>
@@ -34,7 +34,7 @@
       <h6 class="text-center" ng-bind="class.time | date:'short'"></h6>
       <h6 class="text-center" ng-bind="class.type"></h6>
       <h6 class="text-center glyphicon glyphicon-star" ng-class="['success', {'success': class.difficulty<3},'danger', {'danger': class.difficulty<5&&class.difficulty>2}]" ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
-      <!-- <h6 class="text-center glyphicon glyphicon-star-empty" ng-class="['glyphicon-star', {'glyphicon-star': class.di!=1}]"  ng-repeat="i in getNumber(class.difficulty) track by $index"></h6> -->
+      <h6 class="text-center glyphicon glyphicon-star-empty" ng-class="['glyphicon-star', {'glyphicon-star': class.di!=1}]"  ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
     </h4>
         </div>
       </div>
@@ -77,5 +77,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </div>

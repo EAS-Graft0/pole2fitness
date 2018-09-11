@@ -65,13 +65,15 @@ app.get("/getClassInfo", function(req, res) {
 })
 
 app.post("/startNewblock", (req, res) => {
-    dbHelper.getData("DELETE FROM schedule WHERE id > 0").then((result) => {
-        for (let i in req.body) {
-            for (let j in req.body[i]) {
-                dbHelper.getData("INSERT INTO schedule (class_id, date) VALUES (" + i.split('class')[1] + ", '" + req.body[i][j].substring(0, 19) + "')")
+    dbHelper.getData("DELETE FROM bookings WHERE id > 0").then((result) => {
+        dbHelper.getData("DELETE FROM schedule WHERE id > 0").then((result) => {
+            for (let i in req.body) {
+                for (let j in req.body[i]) {
+                    dbHelper.getData("INSERT INTO schedule (class_id, date) VALUES (" + i.split('class')[1] + ", '" + req.body[i][j].substring(0, 19) + "')")
+                }
             }
-        }
-        res.send('New Block Started!')
+            res.send('New Block Started!')
+        })
     })
 })
 
