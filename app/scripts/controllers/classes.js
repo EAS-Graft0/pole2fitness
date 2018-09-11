@@ -22,9 +22,9 @@ angular.module('pole2fitnessApp')
 
         $scope.selectClass = function(clickedClass) {
             $scope.selectedClass = clickedClass
-            console.log($scope.selectedClass)
-
             $scope.getClassSchedule(clickedClass.id);
+
+
         }
         $scope.getNumber = function(num) {
             return new Array(num);
@@ -46,4 +46,7 @@ angular.module('pole2fitnessApp')
                 $scope.classSchedule = result.data;
             })
         }
+
+        $scope.getClassSchedule(1);
+
     });

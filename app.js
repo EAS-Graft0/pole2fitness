@@ -12,6 +12,8 @@ var connection = mysql.createConnection({
     database: 'pole2fitness'
 });
 
+var fs = require('fs');
+
 
 var app = express();
 var server = require('http').Server(app);
@@ -27,9 +29,16 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json())
 
 app.get("/getImages", function(req, res) {
-    var getImages = dbHelper.getData("SELECT * FROM images")
-    getImages.then(function(images) {
-        res.send(images)
+    // var getImages = dbHelper.getData("SELECT * FROM images")
+    // getImages.then(function(images) {
+    //     res.send(images)
+    // })
+    fs.readdir('./app/images', (err, files) => {
+        res.send(files)
+            // console.log(files)
+            // files.forEach(file => {
+            // console.log(file);
+            // })
     })
 })
 

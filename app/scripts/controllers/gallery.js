@@ -11,6 +11,10 @@ angular.module('pole2fitnessApp')
     .controller('GalleryCtrl', function($scope, $http) {
 
         $http.get('http://localhost:88/getImages').then(function(images) {
+            // console.log(images.data)
+            for (let i in images.data) {
+                images.data[i] = 'images/' + images.data[i];
+            }
             $scope.images = images.data
         });
 

@@ -27,17 +27,26 @@
     <div class="btn btn-default poleClass" ng-repeat="class in myClasses" ng-click="selectClass(class)">
       {{class.day}}
       <h4 class="text-center" ng-bind="class.name">
-			<h6 class="text-center" ng-bind="class.date | date:'short'"></h6>
-			<!-- <h6 class="text-center" ng-bind="class.type"></h6> -->
+      <h6 class="text-center" ng-bind="class.date | date:'short'"></h6>
+      <!-- <h6 class="text-center" ng-bind="class.type"></h6> -->
       <span>Difficulty: </span>
-			<h6 class="text-center glyphicon glyphicon-star" ng-class="['success', {'success': class.difficulty<3},'danger', {'danger': class.difficulty<5&&class.difficulty>2}]" ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
-			<!-- <h6 class="text-center glyphicon glyphicon-star-empty" ng-class="['glyphicon-star', {'glyphicon-star': class.di!=1}]"  ng-repeat="i in getNumber(class.difficulty) track by $index"></h6> -->
-		</h4>
+      <h6 class="text-center glyphicon glyphicon-star" ng-class="['success', {'success': class.difficulty<3},'danger', {'danger': class.difficulty<5&&class.difficulty>2}]" ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
+      <!-- <h6 class="text-center glyphicon glyphicon-star-empty" ng-class="['glyphicon-star', {'glyphicon-star': class.di!=1}]"  ng-repeat="i in getNumber(class.difficulty) track by $index"></h6> -->
+    </h4>
     </div>
   </div>
   <div>
-    <div ng-repeat="lesson in classSchedule">{{lesson.name}} {{lesson.date | date:'medium'}}</div>
-    <p class="description" ng-bind="selectedClass.description"></p>
+    <br>
+    <div class="col-md-6">
+      <h4>Description</h4>
+      <hr>
+      <p class="description" ng-bind="selectedClass.description"></p>
+    </div>
+    <div class="col-md-6">
+      <h4>Lessons</h4>
+      <hr>
+      <div ng-repeat="lesson in classSchedule">{{lesson.name}} {{lesson.date | date:'medium'}}</div>
+    </div>
     <br>
     <h4> {{selectedClass.day}} {{selectedClass.name}} - Attendees</h4>
     <table class="table table-hover">
