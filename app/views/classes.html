@@ -27,7 +27,7 @@
     <div class="btn btn-default poleClass" ng-repeat="class in myClasses" ng-click="selectClass(class)">
       {{class.day}}
       <h4 class="text-center" ng-bind="class.name">
-      <h6 class="text-center" ng-bind="class.date | date:'short'"></h6>
+      <h6 class="text-center" ng-bind="class.time | date:'shortTime'"></h6>
       <!-- <h6 class="text-center" ng-bind="class.type"></h6> -->
       <span>Difficulty: </span>
       <h6 class="text-center glyphicon glyphicon-star" ng-class="['success', {'success': class.difficulty<3},'danger', {'danger': class.difficulty<5&&class.difficulty>2}]" ng-repeat="i in getNumber(class.difficulty) track by $index"></h6>
@@ -80,9 +80,10 @@
       <div class="btn poleClass" ng-class="['btn-primary', {'btn-primary': class.id!=1}]" ng-repeat="class in myClasses" ng-click="bookClass(class, bookee)">
         <h4 class="text-center">Book</h4>
         <h4 class="text-center" ng-bind="class.name"></h4>
-        <h6 class="text-center" ng-bind="class.time | date:'short'"></h6>
+        <h6 class="text-center" ng-bind="class.date | date:'short'"></h6>
         <h6 class="text-center" ng-bind="class.type"></h6>
       </div>
+      <span class="danger" ng-if="bookedClass==1">You have successfully booked onto the class!s</span>
     </div>
     <!-- <div class="btn btn-primary">Pay Online</div> -->
   </div>

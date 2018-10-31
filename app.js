@@ -316,5 +316,5 @@ app.post('/sendMessage', function(req, res, next) {
 })
 
 
-app.listen(88);
-console.log('Listening on port 88!');
+app.listen(80);
+console.log('Listening on port 80!');
