@@ -28,12 +28,12 @@ angular.module('pole2fitnessApp')
             "class": "Ametuer"
         }]
 
-        $http.get("http://pole2fitness.myddns.me/getClasses").then(function(classes) {
+        $http.get("http://pole2fitness.ddns.net/getClasses").then(function(classes) {
             $scope.myClasses = classes.data
             $scope.selectedClass = $scope.myClasses[0]
         })
 
-        $http.get("http://pole2fitness.myddns.me/getClassInfo").then(function(classInfo) {
+        $http.get("http://pole2fitness.ddns.net/getClassInfo").then(function(classInfo) {
             $scope.classInfo = classInfo.data
         })
 
@@ -45,7 +45,7 @@ angular.module('pole2fitnessApp')
 
         $scope.removePoler = function(poler) {
             console.log(poler)
-            $http.get("http://pole2fitness.myddns.me/removeMapping?classID=" + poler.class_id + "&userID=" + poler.poler_id).then(function(res) {
+            $http.get("http://pole2fitness.ddns.net/removeMapping?classID=" + poler.class_id + "&userID=" + poler.poler_id).then(function(res) {
                 console.log(res)
             })
         }
@@ -168,7 +168,7 @@ angular.module('pole2fitnessApp')
 
             date = date.toISOString().substring(0, 19)
             console.log(classes)
-            $http.post("http://pole2fitness.myddns.me/startNewblock", classes).then((result) => {
+            $http.post("http://pole2fitness.ddns.net/startNewblock", classes).then((result) => {
                 console.log(result)
             })
         }

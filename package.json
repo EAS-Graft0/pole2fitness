@@ -1,0 +1,25 @@
+{
+  "name": "pole2fitness",
+  "version": "1.0.0",
+  "description": "Pole2Fitness site",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EAS-Graft0/pole2fitness.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EAS-Graft0/pole2fitness/issues"
+  },
+  "homepage": "https://github.com/EAS-Graft0/pole2fitness#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mysql": "^2.16.0",
+    "nodemailer": "^4.6.8"
+  }
+}

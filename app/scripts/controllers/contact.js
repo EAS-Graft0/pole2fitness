@@ -34,7 +34,7 @@ angular.module('pole2fitnessApp')
 
         $scope.sendMessage = function() {
             console.log($scope.contactInfo)
-            $http.post("http://pole2fitness.myddns.me/sendMessage", $scope.contactInfo).then(function(res) {
+            $http.post("http://pole2fitness.ddns.net/sendMessage", $scope.contactInfo).then(function(res) {
                 console.log(res)
             })
         }

@@ -10,12 +10,12 @@
 angular.module('pole2fitnessApp')
     .controller('ClassesCtrl', function($scope, $http) {
 
-        $http.get("http://pole2fitness.myddns.me/getClasses").then(function(classes) {
+        $http.get("http://pole2fitness.ddns.net/getClasses").then(function(classes) {
             $scope.myClasses = classes.data
             $scope.selectedClass = $scope.myClasses[0]
         })
 
-        $http.get("http://pole2fitness.myddns.me/getClassInfo").then(function(classInfo) {
+        $http.get("http://pole2fitness.ddns.net/getClassInfo").then(function(classInfo) {
             $scope.classInfo = classInfo.data
         })
 
@@ -36,7 +36,7 @@ angular.module('pole2fitnessApp')
                 name: participant.name,
                 email: participant.email
             }
-            $http.post("http://pole2fitness.myddns.me/book", data).then((result) => {
+            $http.post("http://pole2fitness.ddns.net/book", data).then((result) => {
                 $scope.bookedClass = 1;
                 $setTimeout(function() {
                     $scope.bookedClass = 0;
@@ -46,7 +46,7 @@ angular.module('pole2fitnessApp')
         }
 
         $scope.getClassSchedule = (class_id) => {
-            $http.get("http://pole2fitness.myddns.me/getClassSchedule?class_id=" + class_id).then((result) => {
+            $http.get("http://pole2fitness.ddns.net/getClassSchedule?class_id=" + class_id).then((result) => {
                 $scope.classSchedule = result.data;
             })
         }

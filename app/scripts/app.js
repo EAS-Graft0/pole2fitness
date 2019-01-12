@@ -20,9 +20,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/classes.html',
+        controller: 'ClassesCtrl',
+        controllerAs: 'classes'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -59,7 +59,12 @@ angular
         controller: 'LocationCtrl',
         controllerAs: 'location'
       })
+      .when('/main', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl',
+        controllerAs: 'main'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/classes'
       });
   });

@@ -21,6 +21,10 @@ body {
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
+.navbar {
+  margin-bottom: 0px;
+}
+
 .header,
 .marketing,
 .footer {

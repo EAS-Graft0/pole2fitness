@@ -11,7 +11,7 @@ angular.module('pole2fitnessApp')
     .controller('IndexCtrl', function($scope) {
         $scope.titles = [{
                 "name": "Home",
-                "href": "#/",
+                "href": "#!/main",
                 "active": 1
             }, {
                 "name": "Classes",

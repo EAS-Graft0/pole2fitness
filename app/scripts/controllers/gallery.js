@@ -10,7 +10,7 @@
 angular.module('pole2fitnessApp')
     .controller('GalleryCtrl', function($scope, $http) {
 
-        $http.get('http://pole2fitness.myddns.me/getImages').then(function(images) {
+        $http.get('http://pole2fitness.ddns.net/getImages').then(function(images) {
             // console.log(images.data)
             for (let i in images.data) {
                 images.data[i] = 'images/' + images.data[i];
